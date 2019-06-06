@@ -262,7 +262,7 @@ router.delete(
     Profile.findOne({ user: req.user.id })
       .then(profile => {
         // Get remove index
-           const removeIndex = profile.experience
+        const removeIndex = profile.experience
           .map(item => item.id)
           .indexOf(req.params.exp_id);
 
