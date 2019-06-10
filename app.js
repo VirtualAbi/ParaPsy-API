@@ -7,6 +7,7 @@ const path = require('path');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
+const verify = require('./routes/api/verify');
 
 const app = express();
 
@@ -19,9 +20,9 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true }) // Let us remove that nasty deprecation warrning :)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .connect(db, { useNewUrlParser: true }
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err)));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -33,6 +34,7 @@ require('./config/passport')(passport);
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
+app.use('/api/verify', verify);
 
 
 const port = process.env.PORT || 5000;
