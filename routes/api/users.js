@@ -41,12 +41,14 @@ router.post("/register", (req, res) => {
         password: req.body.password
       });
       var rand = function() {
-        return Math.random().toString(36).substr(2); // remove `0.`
-    };
-    
-    var token = function() {
+        return Math.random()
+          .toString(36)
+          .substr(2); // remove `0.`
+      };
+
+      var token = function() {
         return rand() + rand(); // to make it longer
-    };
+      };
 
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -75,10 +77,14 @@ router.post("/register", (req, res) => {
   });
 });
 
+// Generate OTP
+var otp = common.generateOTP();
+
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token
 // @access  Public
 router.post("/login", (req, res) => {
+  console.log("Inside login", req.body);
   const { errors, isValid } = validateLoginInput(req.body);
 
   // Check Validation

@@ -28,7 +28,13 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 // Use Routes
-app.use("/api/users", users);
+
+
+app.use("/users", users);
+
+//forgot password
+const forgot = require("./routes/api/forgot");
+app.use("/forgot", forgot);
 
 const port = process.env.PORT || 5000;
 

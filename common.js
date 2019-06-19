@@ -60,4 +60,17 @@ Common.prototype.formatResponse = function (request) {
      }
 }
 
+/**
+* @method
+* @param {string} size
+* @return {string} 5 digit random number
+*
+*/
+Common.prototype.generateOTP = function(size = 5) {
+
+    var min = Math.pow( 10, (size-1) );
+    var max = min * 9;
+    return Math.floor(min + Math.random() * max);
+}
+
 module.exports = new Common()
