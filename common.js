@@ -66,7 +66,7 @@ Common.prototype.formatResponse = function (request) {
 * @return {string} 5 digit random number
 *
 */
-Common.prototype.generateOTP = function(size = 5) {
+Common.prototype.generateOTP = function(size = 4) {
 
     var min = Math.pow( 10, (size-1) );
     var max = min * 9;

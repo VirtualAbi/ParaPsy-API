@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UserSchema = new Schema({
+  userid: {
+    type: String
+  },
   name: {
     type: String,
     required: true
@@ -21,6 +24,9 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  otp: {
+    type: String
   },
   status: {
     type: Boolean,

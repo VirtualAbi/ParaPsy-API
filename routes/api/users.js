@@ -6,6 +6,21 @@ const keys = require("../../config/keys");
 const passport = require("passport");
 var common = require("../../common.js");
 
+//Token Generator
+var rand = function() {
+  return Math.random()
+    .toString(36)
+    .substr(2); // remove `0.`
+};
+
+var token = function() {
+  return rand() + rand(); // to make it longer
+};
+
+// User ID and OTP
+ID = token();
+var OTP = common.generateOTP();
+
 // Load Input Validation
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
@@ -36,19 +51,12 @@ router.post("/register", (req, res) => {
       return res.status(400).json(errors);
     } else {
       const newUser = new User({
+        userid: ID,
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        otp: OTP
       });
-      var rand = function() {
-        return Math.random()
-          .toString(36)
-          .substr(2); // remove `0.`
-      };
-
-      var token = function() {
-        return rand() + rand(); // to make it longer
-      };
 
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -64,7 +72,8 @@ router.post("/register", (req, res) => {
                   data: {
                     message: "Signup was successful",
                     data: {
-                      UserID: token()
+                      UserID: ID,
+                      OTP: OTP
                     }
                   }
                 })
@@ -76,9 +85,6 @@ router.post("/register", (req, res) => {
     }
   });
 });
-
-// Generate OTP
-var otp = common.generateOTP();
 
 // @route   GET api/users/login
 // @desc    Login User / Returning JWT Token
