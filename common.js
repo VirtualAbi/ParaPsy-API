@@ -62,6 +62,20 @@ Common.prototype.formatResponse = function (request) {
             response.status = 'activated'
             return response
             break;
+        case 'OTP Sent':
+            response.status = 'OTP sent to E-mail'
+            return response
+            break;
+        case 'Forgot OTP Verify':
+            response.status = "OTP verified Successfully"
+            response.message = response.data.message
+            response.data = request.data.data
+            return response
+            break;
+        case 'PasswordChanged':
+            response.status = 'Your password has been successfully changed'
+            return response
+            break;
      }
 }
 

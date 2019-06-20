@@ -35,6 +35,14 @@ app.use("/users", users);
 const forgot = require("./routes/api/forgot");
 app.use("/forgot", forgot);
 
+//Forgot Verify OTP
+const forgotverifyotp = require('./routes/api/forgotverifyotp');
+app.use('/forgotverifyotp', forgotverifyotp);
+
+//New Password
+const newPassword = require('./routes/api/newpassword');
+app.use('/newpassword', newPassword);
+
 //OTP Input
 const otpInput = require("./routes/api/otp");
 app.use("/otpinput", otpInput);

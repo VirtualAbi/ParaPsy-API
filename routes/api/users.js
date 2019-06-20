@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
-var common = require("../../common.js");
+const common = require("../../common.js");
 
 //Token Generator
 var rand = function() {

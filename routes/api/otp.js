@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const mongodb = require("mongodb");
-var common = require("../../common.js");
+const common = require("../../common.js");
 const validateOtpInput = require("../../validation/otpval");
 
 // Load User model
@@ -18,8 +18,8 @@ router.post("/", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  var newOTP = common.generateOTP();
-  var uid = new mongodb.ObjectId(req.body.userid);
+  let newOTP = common.generateOTP();
+  let uid = new mongodb.ObjectId(req.body.userid);
 
   User.find({ _id: uid, otp: req.body.otp }).then(user => {
     if (user) {
