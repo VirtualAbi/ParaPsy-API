@@ -67,8 +67,7 @@ Common.prototype.formatResponse = function (request) {
             return response
             break;
         case 'Forgot OTP Verify':
-            response.status = "OTP verified Successfully"
-            response.message = response.data.message
+            response.message = request.data.message
             response.data = request.data.data
             return response
             break;

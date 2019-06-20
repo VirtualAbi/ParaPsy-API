@@ -18,15 +18,19 @@ router.post("/", (req, res) => {
     }
 
     var newOTP = common.generateOTP();
+    let uid = new mongodb.ObjectId(req.body.userid);
 
-  User.find({ otp: req.body.otp }).then(user => {
+  User.find({ _id: uid, otp: req.body.otp }).then(user => {
     if (user) {
-      console.log(user);
+      console.log(user[0]);
              res.status(200).json(common.formatResponse({
                 type: "Forgot OTP Verify",
-                code: "OTP verified Successfully",
+                code: "OTP_VERIFIED",
                 data: {
-                    UserID: User._id
+                        message : "OTP has been verified successfully",
+                        data: {
+                            UserID: user[0]._id
+                        }
                   }
               })
              );
