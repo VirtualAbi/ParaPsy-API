@@ -28,10 +28,14 @@ const UserSchema = new Schema({
   otp: {
     type: String
   },
+  emailisverified: {
+    type: Boolean,
+    default: false
+  },
   status: {
     type: Boolean,
     default: false
-  } 
+  }
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

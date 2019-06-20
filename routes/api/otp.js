@@ -18,6 +18,7 @@ router.post("/", (req, res) => {
     return res.status(400).json(errors);
   }
 
+  var newOTP = common.generateOTP();
   var uid = new mongodb.ObjectId(req.body.userid);
 
   User.find({ _id: uid, otp: req.body.otp }).then(user => {
@@ -25,13 +26,13 @@ router.post("/", (req, res) => {
       console.log(user);
       User.update(
         { _id: uid },
-        { $set: { status: true } },
+        { $set: { status: true, emailisverified: true,otp: newOTP } },
         (err, result) => {
           if (!err) {
             res.status(200).json(
               common.formatResponse({
                 type: "Activation",
-                code: "Your account is active"
+                code: "OTP and E-mail is Verified"
               })
             );
           } else {
@@ -41,11 +42,6 @@ router.post("/", (req, res) => {
       );
     }
   });
-
-  // if (user) {
-  //   User.update({ id: req.body.userid }, { $set: { status: true } });
-  // }
-  // });
 });
 
 module.exports = router;
