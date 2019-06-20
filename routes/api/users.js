@@ -13,12 +13,6 @@ var rand = function() {
     .substr(2); // remove `0.`
 };
 
-var token = function() {
-  return rand() + rand(); // to make it longer
-};
-
-// User ID and OTP
-ID = token();
 var OTP = common.generateOTP();
 
 // Load Input Validation
@@ -51,7 +45,6 @@ router.post("/register", (req, res) => {
       return res.status(400).json(errors);
     } else {
       const newUser = new User({
-        userid: ID,
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
@@ -72,8 +65,7 @@ router.post("/register", (req, res) => {
                   data: {
                     message: "Signup was successful",
                     data: {
-                      UserID: ID,
-                      OTP: OTP
+                      UserID: user._id
                     }
                   }
                 })

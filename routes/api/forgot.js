@@ -13,21 +13,6 @@ router.post("/", (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-
-  User.findOne({ email: req.body.email }).then(user => {
-    if (user) {
-      errors.email = "Email already exists";
-      return res.status(400).json(errors);
-    } else {
-      const newUser = new User({
-        userid: ID,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        otp: OTP
-      });
-    }
-  });
 });
 
 module.exports = router;

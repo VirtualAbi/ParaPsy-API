@@ -57,6 +57,11 @@ Common.prototype.formatResponse = function (request) {
             response.data = request.data.data
             return response
             break;
+        
+        case 'Activation':
+            response.status = 'activated'
+            return response
+            break;
      }
 }
 
