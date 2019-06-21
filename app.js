@@ -59,6 +59,10 @@ app.use("/otpinput", otpInput);
 let reset = require("./routes/api/reset");
 app.use("/reset", reset);
 
+//Country
+let country = require('./routes/api/country');
+app.use('/country', country);
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
