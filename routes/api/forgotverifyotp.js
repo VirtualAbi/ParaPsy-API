@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
       return res.status(400).json(errors);
     }
 
-    var newOTP = common.generateOTP();
+    let newOTP = common.generateOTP();
     let uid = new mongodb.ObjectId(req.body.userid);
 
   User.find({ _id: uid, otp: req.body.otp }).then(user => {

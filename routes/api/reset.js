@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-const mongodb = require("mongodb");
 const common = require("../../common.js");
 
 // Load User model
@@ -11,14 +10,14 @@ router.post("/", (req, res) => {
   console.log("Hello", req.body);
 
 
-  let uid = new mongodb.ObjectId(req.body.userid);
+    let oldPassword = req.body.oldpassword;
   newPassword = req.body.newpassword;
 
-  User.find({ _id: uid }).then(user => {
+  User.find({ password: oldPassword }).then(user => {
     if (user) {
       console.log(user);
       User.update(
-        { _id: uid },
+        { password: oldPassword },
         { $set: { password: newPassword } },
         (err, result) => {
           if (!err) {

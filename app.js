@@ -36,16 +36,20 @@ const forgot = require("./routes/api/forgot");
 app.use("/forgot", forgot);
 
 //Forgot Verify OTP
-const forgotverifyotp = require('./routes/api/forgotverifyotp');
-app.use('/forgotverifyotp', forgotverifyotp);
+const forgotverifyotp = require("./routes/api/forgotverifyotp");
+app.use("/forgotverifyotp", forgotverifyotp);
 
 //New Password
-const newPassword = require('./routes/api/newpassword');
-app.use('/newpassword', newPassword);
+const newPassword = require("./routes/api/newpassword");
+app.use("/newpassword", newPassword);
 
 //OTP Input
 const otpInput = require("./routes/api/otp");
 app.use("/otpinput", otpInput);
+
+//Reset Password
+let reset = require("./routes/api/reset");
+app.use("/reset", reset);
 
 const port = process.env.PORT || 5000;
 
