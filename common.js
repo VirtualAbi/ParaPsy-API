@@ -75,6 +75,10 @@ Common.prototype.formatResponse = function (request) {
             response.status = 'Your password has been successfully changed'
             return response
             break;
+        case 'Resend':
+            response.status = 'A new OTP has been sent to your E-mail'
+            return response
+            break;
      }
 }
 

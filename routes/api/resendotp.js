@@ -21,8 +21,8 @@ router.post("/", (req, res) => {
         if (!err) {
           res.status(200).json(
             common.formatResponse({
-              type: "Activation",
-              code: "OTP and E-mail is Verified"
+              type: "Resend",
+              code: "A new OTP has been resent to your E-mail"
             })
           );
         } else {
